@@ -3,8 +3,14 @@ name: Docker Image CI
 
 on: [push]
 
+on:
+  push:
+    branches: [master]
+  schedule:
+    - cron:  '0 12 * * 1' # every Monday
+
 jobs:
-  build:
+  update_image:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
