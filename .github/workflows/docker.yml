@@ -1,0 +1,16 @@
+---
+name: Docker Image CI
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build the Docker image
+        run: docker build . --file Dockerfile --tag adhawk/google-pubsub-emulator
+      - name: Log into registry
+        run: echo "${{ secrets.DOCKERHUB_API_KEY }}" | docker login -u ianks --password-stdin
+      - name: Push the Docker image
+        run: docker push adhawk/google-pubsub-emulator
