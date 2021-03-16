@@ -3,7 +3,7 @@ version: '3.6'
 
 services:
   pubsub:
-    image: adhawk/google-pubsub-emulator
+    image: adhawk/google-pubsub-emulator:latest
     build: .
     ports:
       - 8085:8085
